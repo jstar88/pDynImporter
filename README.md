@@ -22,7 +22,7 @@ Check for correct modules and import them in globals
     
     # errors contains the first wrong module.
     # if empty then all imports are made
-    # Else imports after the error are not made
+    # Else imports after the wrong one are not made
     if errors:
         print errors
 
