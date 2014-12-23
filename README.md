@@ -18,6 +18,12 @@ Check for correct modules and import them in globals
     modules = [ ('moduleName',['funcName','funcName2','funcName3']),'moduleName2','moduleName3' ]
     
     # in global scope
-    my_imports(modules)
+    errors = my_imports(modules)
+    
+    # errors contains the first wrong module.
+    # if empty then all imports are made
+    # Else imports after the error are not made
+    if errors:
+        print errors
 
 ```
