@@ -1,3 +1,4 @@
+import __builtin__
 def my_import(module_name,func_names = [],cache = False):
     if module_name in globals() and cache:
         return True
@@ -22,3 +23,10 @@ def my_imports(modules):
         if not my_import(name, funcs):
             return module
     return ''
+
+def checkImports(modules):
+    c = my_imports(modules)
+    if c:
+       raise Exception("module '"+c+"' not found")
+    else:
+        __builtin__.modules = globals()

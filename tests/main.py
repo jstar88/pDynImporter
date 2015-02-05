@@ -1,14 +1,11 @@
-from pDynImporter import my_imports
+from pDynImporter import checkImports
+import __builtin__
 
-def checkPluginsImports(plugin,modules):
-    c = my_imports(modules)
-    if c:
-        print plugin +" has errors!: module '"+c+"' not found"
+for k,v in  __builtin__.modules.iteritems():
+    if not k.startswith("_"):
+        globals()[k] = v
 
-
-def d():
-	modules = [ ('test',['x']) ]
-    checkPluginsImports('demoPlugin',modules)
+modules = [ ('test',['x']) ]
+checkImports(modules)
     
-d()
 x()
