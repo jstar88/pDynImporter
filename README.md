@@ -25,5 +25,12 @@ Check for correct modules and import them in globals
     # Else imports after the wrong one are not made
     if errors:
         print errors
+        
+        
+    # code to import them in this file
+    
+    for k,v in  __builtin__.modules.iteritems():
+    if not k.startswith("_"):
+        globals()[k] = v
 
 ```
