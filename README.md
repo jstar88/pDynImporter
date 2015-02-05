@@ -30,7 +30,7 @@ Check for correct modules and import them in globals
     # code to import them in this file
     
     for k,v in  __builtin__.modules.iteritems():
-    if not k.startswith("_"):
-        globals()[k] = v
+        if not k.startswith("_"):
+            globals()[k] = v
 
 ```
