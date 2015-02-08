@@ -1,10 +1,9 @@
 class ModulesManager(object):
-    errfunc = None
-    def __init__(self, modules = {}):
+    def __init__(self,modules = {}):
         self.modules = {}
         self.loads(modules, True)
     
-    def load(self, module, cache = True):
+    def load(self,module,cache = True):
         if type(module) is tuple:
             module_name = module[0]
             func_names = module[1]
@@ -27,16 +26,17 @@ class ModulesManager(object):
     def loads(self, modules, cache = True):
         for module in modules:
             if not self.load(module,cache):
-                if ModulesManager.errfunc is None:
-                    raise ImportError("module '"+module+"' not found")
-                else:
-                    ModulesManager.errfunc(module)
+                self.errfunc(module)
                 return
     
     def getGlobals(self):
         return self.modules
     
+    def errfunc(self,module):
+        raise ImportError("module '"+str(module)+"' not found")
+    
         
-def getCodeForImports(modules, errfunc = None):
-    ModulesManager.errfunc = errfunc
+def getCodeForImports(modules,errfunc = None):
+    if errfunc is not None:
+        ModulesManager.errfunc = lambda a,b: errfunc(b)
     return "map(lambda v: globals().__setitem__(v[0],v[1]) , ModulesManager("+str(modules)+").getGlobals().items())"
