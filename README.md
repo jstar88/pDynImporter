@@ -4,7 +4,7 @@ pDynImporter
 Check for correct modules and import them in globals
 
 ```python
-    from pDynImporter import getCodeForImports
+    from pDynImporter import *
     
     # this equal: from moduleName import funcName 
     modules = [ ('moduleName',['funcName']) ]

@@ -1,4 +1,4 @@
-from pDynImporter import getCodeForImports
+from pDynImporter import *
 
 modules = [ ('test',['x']) ]
 #dynamic import
